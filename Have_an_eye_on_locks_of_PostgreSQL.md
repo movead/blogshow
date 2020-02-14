@@ -211,7 +211,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
       (1 row)
       postgres=# analyse t1;
       
-	```
+	  ```
       
       Now look at the lock view, 11804 session is waiting for a *SHARE UPDATE EXCLUSIVE* lock
       
