@@ -4,13 +4,13 @@ The lock is an essential part of a database system. In PostgreSQL, there are var
 
 
 
-## A Little Bit About *pg_locks*
+## 1. A Little Bit About *pg_locks*
 
 It is a locks view in PostgreSQL. Except for row locks added by the SELECT ... FOR command, we can observe all other locks existing in the database in this lock view. There is a granted attribute in the view if the granted is true indicates that the lock has been acquired and if false indicates that the lock is waiting.
 
 
 
-## Table-level Lock
+## 2. Table-level Lock
 
 *ACCESS SHARE, ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE,SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE* is all the table-level locks, and below is the block relationship among them.
 
@@ -211,7 +211,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
       (1 row)
       postgres=# analyse t1;
       
-	  ```
+	```
       
       Now look at the lock view, 11804 session is waiting for a *SHARE UPDATE EXCLUSIVE* lock
       
@@ -385,7 +385,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    
 
-   ## ROW-level Lock
+   ## 3. ROW-level Lock
 
    FOR UPDATE, FOR NO KEY UPDATE, FOR SHARE, FOR KEY SHARE are explicit row-level lock，below is the block relationship among them.。
 
@@ -780,7 +780,7 @@ At this point we found that session 17559 added a row lock to a row in the t1 ta
 
  
 
-   ## Transcation Lock
+   ## 4. Transcation Lock
 
 There's transcation lock which can not add manual.
 
@@ -807,13 +807,13 @@ In this example, we started a transaction and performed a row of data update in 
 
 
 
-   ## Page Lock
+   ## 5. Page Lock
 
 The page lock is also a pass in the official document, because page locks are only used in some indexes in PostgreSQL, and these are basically invisible to us and are not testable. According to the official document, 'but they are mentioned here for completeness'.
 
 
 
-   ## Advisory Lock
+   ## 6. Advisory Lock
 
 PostgreSQL provides a way to create locks whose meaning is defined by the application, called advisory locks. PostgreSQL is only responsible for creating advisory locks or unlocking after receiving the advisory lock command, but PostgreSQL does not use these locks, these locks will be used by the application that created them. Advisory locks are also explicit in the pg_locks view. The following table is the function of the advisory lock:
 
@@ -932,7 +932,7 @@ After the current session ends, the lock will be released automatically. Of cour
 
    
 
-   ## In the end
+   ## 7. In the end
 
 This blog analyzes every postgres lock and adds experimental use cases to it. This module is not a conclusion but a postscript, because this is a PostgreSQL lock exploration blog. Only after you fully understand the locks that exist in the database can you calmly cope with various query problems that occur in the database.
 
