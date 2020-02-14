@@ -116,7 +116,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
       
       postgres=# select locktype, relation::regclass as rel, pid, mode, granted
       from pg_locks where pid <> pg_backend_pid() and locktype = 'relation'  order by pid;
- locktype | rel |  pid  |     mode     | granted 
+      locktype | rel |  pid  |     mode     | granted 
       ----------+-----+-------+--------------+---------
        relation | t1  | 19312 | RowShareLock | t
       (1 row)
@@ -156,9 +156,9 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
       UPDATE 1
       
       postgres=# select locktype, relation::regclass as rel, pid, mode, granted
-from pg_locks where pid <> pg_backend_pid() and locktype = 'relation'  order by pid;
+      from pg_locks where pid <> pg_backend_pid() and locktype = 'relation'  order by pid;
        locktype | rel |  pid  |       mode       | granted 
-----------+-----+-------+------------------+---------
+      ----------+-----+-------+------------------+---------
        relation | t1  | 11751 | RowExclusiveLock | t
       (1 row)
       
@@ -198,23 +198,21 @@ from pg_locks where pid <> pg_backend_pid() and locktype = 'relation'  order by 
       BEGIN
       postgres=# lock table t1 in share mode;
       LOCK TABLE
-postgres=#
+      postgres=#
       ```
 
       On another session, do a *analyse* command，and we can see the *analyse* command hung
       
-      ```
+      ```sql
       postgres=# select pg_backend_pid();
        pg_backend_pid 
       ----------------
                 11804
       (1 row)
+      postgres=# analyse t1;
       
-      ```
-
-postgres=# analyse t1;
-      ```
-
+	```
+      
       Now look at the lock view, 11804 session is waiting for a *SHARE UPDATE EXCLUSIVE* lock
       
       ```
@@ -225,6 +223,7 @@ postgres=# analyse t1;
        relation | t1  | 11751 | ShareLock                | t
        relation | t1  | 11804 | ShareUpdateExclusiveLock | f
       (2 rows)
+      
       ```
 
    
@@ -266,7 +265,7 @@ postgres=# analyse t1;
 
       On another session, do a *create index* command，and we can see the *create index* command hung
 
-      ```
+      ```sql
       postgres=# select pg_backend_pid();
        pg_backend_pid 
       ----------------
@@ -279,7 +278,7 @@ postgres=# analyse t1;
 
       Now look at the lock view, 11804 session is waiting for a *SHARE* lock
 
-      ```
+      ```sql
       postgres=# select locktype, relation::regclass as rel, pid, mode, granted
       from pg_locks where pid <> pg_backend_pid() and locktype = 'relation'  order by pid;
        locktype | rel |  pid  |       mode       | granted 
