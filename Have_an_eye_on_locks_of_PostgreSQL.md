@@ -6,7 +6,7 @@ The lock is an essential part of a database system. In PostgreSQL, there are var
 
 ## 1. A Little Bit About *pg_locks*
 
-It is a locks view in PostgreSQL. Except for row locks added by the SELECT ... FOR command, we can observe all other locks existing in the database in this lock view. There is a granted attribute in the view if the granted is true indicates that the lock has been acquired and if false indicates that the lock is waiting.
+It is a locks view in PostgreSQL. Except for row locks added by the SELECT ... FOR command, we can observe all other locks existing in the database in this lock view. There is a granted attribute in the lock view, if this attribute is true, it means that the process has acquired the lock. Otherwise, it means that the process is waiting for the lock.
 
 
 
@@ -387,7 +387,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    ## 3. ROW-level Lock
 
-   FOR UPDATE, FOR NO KEY UPDATE, FOR SHARE, FOR KEY SHARE are explicit row-level lock，below is the block relationship among them.。
+   FOR UPDATE, FOR NO KEY UPDATE, FOR SHARE, FOR KEY SHARE are explicit row-level lock，below is the block relationship among them.
 
 |                   | FOR KEY SHARE | FOR SHARE | FOR NO KEY UPDATE | FOR UPDATE |
 | ----------------- | ------------- | --------- | ----------------- | ---------- |
@@ -780,9 +780,9 @@ At this point we found that session 17559 added a row lock to a row in the t1 ta
 
  
 
-   ## 4. Transcation Lock
+   ## 4. Transaction Lock
 
-There's transcation lock which can not add manual.
+There is a transaction lock which can't be added manually.
 
    ```sql
    postgres=# select pg_backend_pid();
@@ -809,7 +809,7 @@ In this example, we started a transaction and performed a row of data update in 
 
    ## 5. Page Lock
 
-The page lock is also a pass in the official document, because page locks are only used in some indexes in PostgreSQL, and these are basically invisible to us and are not testable. According to the official document, 'but they are mentioned here for completeness'.
+The page lock is also a pass in the official document, because page locks are only used in some indexes in PostgreSQL, and these are basically invisible to us and are not testable. According to the official document, it says 'but they are mentioned here for completeness'.
 
 
 
@@ -935,8 +935,6 @@ After the current session ends, the lock will be released automatically. Of cour
    ## 7. In the end
 
 This blog analyzes every postgres lock and adds experimental use cases to it. This module is not a conclusion but a postscript, because this is a PostgreSQL lock exploration blog. Only after you fully understand the locks that exist in the database can you calmly cope with various query problems that occur in the database.
-
-   
 
    
 
