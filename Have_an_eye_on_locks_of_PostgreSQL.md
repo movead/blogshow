@@ -137,7 +137,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    2. Locks conflict with it
 
-      SHARE，SHARE ROW EXCUSIVE，EXCUSIVE，ACCESS EXCUSIVE
+      SHARE,SHARE ROW EXCUSIVE,EXCUSIVE,ACCESS EXCUSIVE
 
    3. Lock instance(Not by lock command)
 
@@ -177,7 +177,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    2. Locks conflict with it
 
-      SHARE UPDATE EXCLUSIVE，SHARE ，SHARE ROW EXCLUSIVE，EXCLUSIVE，ACCESS EXCLUSIVE
+      SHARE UPDATE EXCLUSIVE,SHARE ,SHARE ROW EXCLUSIVE,EXCLUSIVE,ACCESS EXCLUSIVE
 
    3. Lock instance(Not by lock command)
 
@@ -201,7 +201,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
       postgres=#
       ```
 
-      On another session, do a *analyse* command，and we can see the *analyse* command hung
+      On another session, do a *analyse* command,and we can see the *analyse* command hung
       
       ```sql
       postgres=# select pg_backend_pid();
@@ -239,7 +239,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    2. Locks conflict with it
 
-       ROW EXCLUSIVE， SHARE UPDATE EXCLUSIVE，SHARE ROW EXCLUSIVE，EXCLUSIVE，
+       ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE,SHARE ROW EXCLUSIVE,EXCLUSIVE,
 
       ACCESS EXCLUSIVE
 
@@ -263,7 +263,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
       postgres=#
       ```
 
-      On another session, do a *create index* command，and we can see the *create index* command hung
+      On another session, do a *create index* command,and we can see the *create index* command hung
 
       ```sql
       postgres=# select pg_backend_pid();
@@ -300,7 +300,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    2. Locks conflict with it
 
-      ROW EXCLUSIVE， SHARE UPDATE EXCLUSIVE，SHARE, SHARE ROW EXCLUSIVE，EXCLUSIVE，
+      ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE,SHARE, SHARE ROW EXCLUSIVE,EXCLUSIVE,
 
       ACCESS EXCLUSIVE
 
@@ -318,7 +318,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    2. Locks conflict with it
 
-      ROW SHARE, ROW EXCLUSIVE， SHARE UPDATE EXCLUSIVE，SHARE, SHARE ROW EXCLUSIVE，EXCLUSIVE，ACCESS EXCLUSIVE
+      ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE,SHARE, SHARE ROW EXCLUSIVE,EXCLUSIVE,ACCESS EXCLUSIVE
 
    3. Lock instance(Not by lock command)
 
@@ -330,7 +330,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    1. When will this lock appear
 
-      - ALTER TABLE，DROP TABLE，TRUNCATE，REINDEX，CLUSTER，VACUUM FULL commands
+      - ALTER TABLE,DROP TABLE,TRUNCATE,REINDEX,CLUSTER,VACUUM FULL commands
       - Use the Lock command
 
    2. Locks conflict with it
@@ -357,7 +357,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
       postgres=#
       ```
 
-      On another session, do a *alter table* command，and we can see the *alter table* command hung
+      On another session, do a *alter table* command,and we can see the *alter table* command hung
 
       ```
       postgres=# select pg_backend_pid();
@@ -387,7 +387,7 @@ These are table-level locks that exist in PostgreSQL and table-level locks are s
 
    ## 3. ROW-level Lock
 
-   FOR UPDATE, FOR NO KEY UPDATE, FOR SHARE, FOR KEY SHARE are explicit row-level lock，below is the block relationship among them.
+   FOR UPDATE, FOR NO KEY UPDATE, FOR SHARE, FOR KEY SHARE are explicit row-level lock,below is the block relationship among them.
 
 |                   | FOR KEY SHARE | FOR SHARE | FOR NO KEY UPDATE | FOR UPDATE |
 | ----------------- | ------------- | --------- | ----------------- | ---------- |
