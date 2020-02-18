@@ -809,7 +809,7 @@ In this example, we started a transaction and performed a row of data update in 
 
    ## 5. Page Lock
 
-The page lock is also a pass in the official document, because page locks are only used in some indexes in PostgreSQL, and these are basically invisible to us and are not testable. According to the official document, it says 'but they are mentioned here for completeness'.
+The page lock is also a pass in the official document, because page locks are only used in some indexes in PostgreSQL, and these are basically invisible to us and are not testable. According to the official document, it says 'Application developers normally need not be concerned with page-level locks, but they are mentioned here for completeness'.
 
 
 
@@ -934,7 +934,7 @@ After the current session ends, the lock will be released automatically. Of cour
 
    ## 7. In the end
 
-This blog analyzes every postgres lock and adds experimental use cases to it. This module is not a conclusion but a postscript, because this is a PostgreSQL lock exploration blog. Only after you fully understand the locks that exist in the database can you calmly cope with various query problems that occur in the database.
+This blog analyzes every postgres lock and adds experimental use cases to it. This is a PostgreSQL lock exploration blog, only after you fully understand the locks that exist in the database can you calmly cope with various query problems that occur in the database.
 
    
 
